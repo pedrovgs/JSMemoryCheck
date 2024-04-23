@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Performance Info</title>
+</head>
+<body>
+<h1>Memory Performance Info</h1>
+<div id="memory-info">
+    <!-- Memory information will be displayed here -->
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const memoryInfo = window.performance.memory;
+
+    const memoryDiv = document.getElementById('memory-info');
+
+    if (memoryInfo) {
+        memoryDiv.innerHTML = `
+            <p>Total JS Heap Size: ${memoryInfo.totalJSHeapSize}</p>
+            <p>Used JS Heap Size: ${memoryInfo.usedJSHeapSize}</p>
+            <p>JS Heap Size Limit: ${memoryInfo.jsHeapSizeLimit}</p>
+            <p>Total JS Heap Size (Approximate): ${Math.round(memoryInfo.totalJSHeapSize / (1024 * 1024))} MB</p>
+            <p>Used JS Heap Size (Approximate): ${Math.round(memoryInfo.usedJSHeapSize / (1024 * 1024))} MB</p>
+            <p>JS Heap Size Limit (Approximate): ${Math.round(memoryInfo.jsHeapSizeLimit / (1024 * 1024))} MB</p>
+        `;
+    } else {
+        memoryDiv.innerHTML = '<p>Memory information is not available in this browser.</p>';
+    }
+});
+</script>
+</body>
+</html>
